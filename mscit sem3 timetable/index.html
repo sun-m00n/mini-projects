@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Table</title>
+</head>
+
+<body>
+    <p>
+        <span id="datetime"></span>
+        <span id="author">
+            <a href="mailto:abhishekchaurasiya054.model@gmail.com">~Abhishek Chaurasiya</a>
+        </span>
+    </p>
+    <div id="ai_container">
+        <h1>AI</h1>
+        <span class="lectures">
+        </span>
+    </div>
+    <div id="security_container">
+        <h1>SECURITY</h1>
+        <span class="lectures"></span>
+    </div>
+
+    <script type="module">
+        // my vesion of basket.js
+        import { Basket } from './basket.js'
+        Basket.require({ url: "main.js" }, { url: "style.css" })
+    </script>
+</body>
+
+</html>
