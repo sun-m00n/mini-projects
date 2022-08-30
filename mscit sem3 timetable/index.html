@@ -27,12 +27,13 @@
     </div>
 
     <script type="module">
+        localStorage.clear()
         // my vesion of basket.js
         import { Basket } from 'js/basket.js'
         Basket.config({ updated_on: 1661844872063 })
         Basket.require(
-            { url: "js/main.js" },
-            { url: "css/style.css" }
+            { url: "js/main.js", key:"script" },
+            { url: "css/style.css", key: "stylesheet" }
         )
     </script>
 </body>
