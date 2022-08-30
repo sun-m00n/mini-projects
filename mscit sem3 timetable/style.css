@@ -6,6 +6,18 @@
     text-decoration: none;
     color: currentColor;
     letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --clr-time-bg: cornflowerblue;
+    --clr-time-fg: white;
+}
+
+::-webkit-scrollbar {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 body p {
@@ -21,46 +33,70 @@ body p {
     letter-spacing: 2px;
 }
 
-#author a {
-    box-shadow: none;
-}
-
 .lectures {
     margin: 9px;
+    padding: 9px 6px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 9px;
+    overflow-x: scroll;
 }
 
-.lectures a {
+a.card {
     padding: 6px;
-    border-radius: 3px;
+    border-radius: 6px;
     box-shadow:
         0 0 4px #dedede,
         0 0 9px #efefef;
-}
-
-td {
-    font-size: 14px;
-}
-
-td:nth-of-type(1) {
-    text-transform: capitalize;
-    padding-right: 12px;
-    border-right: 1px solid;
-}
-
-td:nth-of-type(2) {
-    padding-left: 12px;
-}
-
-.lectures a span {
-    margin-top: 6px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: small;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: blue;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+span.left {
+    font-size: xx-large;
+    background-color: var(--clr-time-bg);
+    box-shadow:
+        4px -9px 1px var(--clr-time-bg),
+        -9px -9px 1px var(--clr-time-bg),
+        4px 9px 1px var(--clr-time-bg),
+        -9px 9px 1px var(--clr-time-bg);
+    color: var(--clr-time-fg);
+}
+
+a.card hr {
+    width: 10px;
+    height: 90%;
+}
+
+span.right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+span.subject {
+    font-size: x-large;
+    width: max-content;
+    align-self: center;
+    letter-spacing: 2px;
+}
+
+span.staff {
+    opacity: 0.6;
+    font-size: x-small;
+    letter-spacing: 2px;
+}
+
+a span.right span:last-of-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+a span.right span svg {
+    width: 12px;
+    opacity: .3;
+    transform: translate(20%, 30%);
 }

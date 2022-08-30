@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
     <title>Time Table</title>
 </head>
 
@@ -28,7 +29,11 @@
     <script type="module">
         // my vesion of basket.js
         import { Basket } from './basket.js'
-        Basket.require({ url: "main.js" }, { url: "style.css" })
+        Basket.config({ refetch: true, updated_on: 1661844872063 })
+        Basket.require(
+            { url: "main.js" },
+            { url: "style.css" }
+        )
     </script>
 </body>
 
