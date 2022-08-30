@@ -1,7 +1,7 @@
 {
     "short_name": "Time Table",
     "name": "Msc IT sem-3 Daily Time Table",
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "icons": [
         {
             "src": "/icons/icon 200x200.png",
@@ -16,5 +16,5 @@
         "window-control-overlay",
         "minimal-ui"
     ],
-    "prefer_related_applications": "false"
+    "prefer_related_applications": false
 }
