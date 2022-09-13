@@ -1,0 +1,12 @@
+*,
+#themeSwitcher,
+#overview,
+#fullscreen * {
+    background-color: white;
+    color: black;
+    fill: black;
+}
+
+#questionStatus button {
+    color: black;
+}

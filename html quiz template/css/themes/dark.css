@@ -1,0 +1,20 @@
+/* :root {
+    --clr-mark: rgb(255, 255, 255);
+} */
+
+*,
+#themeSwitcher,
+#overview,
+#fullscreen * {
+    background-color: black;
+    color: white;
+    fill: white;
+}
+
+#questionStatus button {
+    color: black;
+}
+
+.options label input[type='radio']+span {
+    opacity: .2;
+}

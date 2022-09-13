@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploader</title>
+
+    <style>
+        * {
+            background-color: black;
+            color: bisque;
+        }
+
+        button {
+            border: 1px solid bisque;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <label>
+        Select Firebase Service File :
+        <input type="file" name="serviceFile" id="serviceFile" accept=".json">
+    </label>
+
+    <label>
+        Select JSON File :
+        <input type="file" name="jsonFile" id="jsonFile" accept=".json">
+    </label>
+
+    <button onclick="upload()">Upload</button>
+
+    <p id="logs"></p>
+
+    <script>
+        let
+            // errorOccured = false, 
+            json = { serviceFile: "", data: "" },
+            str = { serviceFile: "", data: "" };
+        function validateJsonFile(e) {
+            try {
+
+
+                if (!e.target.value.length) throw Error
+                if ((e.target.files[0]).type != "application/json") throw TypeError
+
+                let fileType = (e.target.id == "serviceFile") ? "serviceFile" : "data"
+
+                let reader = new FileReader()
+
+                reader.onload = function (e) {
+                    str[fileType] = e.target.result;
+                    json[fileType] = JSON.parse(str[fileType]);
+                }
+
+                reader.addEventListener('progress', (e) => {
+                    if (e.loaded && e.total) {
+                        const percent = (e.loaded / e.total) * 100;
+                        console.log(`Progress: ${Math.round(percent)}`);
+                    }
+                })
+
+                reader.readAsText(e.target.files[0])
+
+            } catch (error) {
+                alert('Error:.')
+                e.target.value = ''
+            }
+        }
+
+        document.querySelectorAll("input[type='file']").forEach(input => {
+            input.onchange = validateJsonFile
+        })
+
+        function upload() {
+            let
+                serviceFileData = json.serviceFile,
+                firebaseData = json.data
+            if (
+                Object.keys(serviceFileData).length > 0
+                &&
+                Object.keys(firebaseData).length > 0
+            ) {
+                console.log("begin")
+                upload_data_2_firebase(serviceFileData, firebaseData)
+            }
+            else {
+                alert("ERROR:.")
+            }
+        }
+    </script>
+    <script>
+        function upload_data_2_firebase(serviceFileData, firebaseData) {
+
+        }
+    </script>
+</body>
+
+</html>

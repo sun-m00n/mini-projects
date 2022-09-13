@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: ubuntu-regular;
+    outline: none;
+    border: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+html,
+body,
+#introPage,
+#questions {
+    width: 100vw;
+    height: 100vh;
+
+    scroll-behavior: smooth;
+    scroll-snap-align: start;
+    scroll-snap-type: y mandatory;
+}
+
+button {
+    min-width: fit-content;
+    width: 100px;
+    padding: 8px;
+    margin: 0 3px;
+    font-size: 15px;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 3px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 2px 2px 1px 1px;
+}
+
+button.wordBtn {
+    border: none;
+    box-shadow: none;
+    font-size: small;
+    width: max-content;
+}
+
+button.wordBtn:hover {
+    outline: 1px dashed;
+}
+
+/*------------*/
+/* intro page */
+/*------------*/
+#introPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 0 6vw;
+    width: calc(100vw - 12vw);
+}
+
+#introPage #detail {
+    margin: 1vw 0;
+}
+
+/*-----------*/
+/* questions */
+/*-----------*/
+#questions .question {
+    width: 88vw;
+    height: 100vh;
+    margin: 6vw;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 9px;
+
+    scroll-behavior: smooth;
+    scroll-snap-align: start;
+    scroll-snap-type: y mandatory;
+}
+
+/*---------*/
+/* options */
+/*---------*/
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.options label input[type='radio'] {
+    transform: translateY(3px);
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+.options label input[type='radio']+span {
+    width: 6px;
+    height: 6px;
+    margin: 0 6px;
+    outline: 3px solid;
+    border-radius: 100px;
+
+    opacity: .3;
+}
+
+.options label input[type='radio'] {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.options label input[type='radio']:checked+span {
+    opacity: 1;
+}
+
+/*--------------*/
+/* progress bar */
+/*--------------*/
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 4px;
+
+    background-color: transparent;
+}
+
+#progressBar span {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: inherit;
+    width: 0%;
+
+    background-color: blueviolet;
+}
+
+/*-----------*/
+/* countdown */
+/*-----------*/
+#countdown {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 6px;
+
+    border-radius: 3px;
+}
+
+#countdown span {
+    background-color: transparent;
+}
+
+#countdown.warn {
+    background-color: rgba(254, 193, 7, 0.2);
+    border: 1px solid rgb(254, 193, 7);
+}
+
+#countdown.timeout {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 1px solid rgb(255, 0, 0);
+}
+
+/*--------------*/
+/* switch theme */
+/*--------------*/
+#themeSwitcher {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 12px;
+}
+
+#themeSwitcher.close #themeSwitcherContainer,
+#themeSwitcher.open #themeSwitcherButton {
+    display: none;
+}
+
+#themeSwitcher.open #themeSwitcherContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+#themeSwitcher.open #themeSwitcherContainer span {
+    padding: 6px;
+    width: clamp(300px, 90%, 720px);
+    height: max-content;
+    max-height: 72%;
+
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+/*----------*/
+/* overview */
+/*----------*/
+#overview {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 12px;
+}
+
+#overview.close #overviewContainer,
+#overview.open #overviewButton {
+    display: none;
+}
+
+#overview.open #overviewContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+#overview.open #overviewContainer #questionStatus {
+    width: max-content;
+    max-width: 720px;
+    height: max-content;
+    max-height: 72%;
+    padding: 6px;
+
+    border-radius: 6px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9px;
+}
+
+#overview.open #overviewContainer #questionStatus button {
+    width: 42px;
+    font-weight: bold;
+}
+
+/* unattempted question button color */
+#questionStatus button.unattempted {
+    background-color: rgb(250, 117, 117);
+}
+
+/* attempted question button color */
+#questionStatus button.attempted {
+    background-color: rgb(102, 250, 102);
+}
+
+/*------------------*/
+/* progress counter */
+/*------------------*/
+#progressCounter {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin: 12px;
+    padding: 6px;
+    transform: translate(-63%);
+
+    font-size: small;
+}
+
+/*------------*/
+/* fullscreen */
+/*------------*/
+#fullscreen {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#fullscreen * {
+    opacity: 0.9;
+}
+
+#fullscreen.on button#enterFullScreenBtn,
+#fullscreen.off button#exitFullScreenBtn {
+    display: none;
+}

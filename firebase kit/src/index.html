@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Kit</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="firebase_config_file_section">
+        <h2>Firebase Config File</h2>
+        <span>
+            <label>
+                <span class="btn">Upload</span>
+                <input type="file" accept=".json" hidden id="firebase_config_file_input">
+            </label>
+            <span class="btn" id="download_firebase_config_file">Download</span>
+        </span>
+        <span id="firebase_config_file_status">
+            <a href="" id="download_link" hidden></a>
+        </span>
+    </section>
+
+    <section id="upload_data_section">
+        <label>
+            <span class="btn">Upload Data ( .json )</span>
+            <input type="file" accept=".json" hidden id="upload_data_input">
+        </label>
+    </section>
+
+    <!-- logs -->
+    <section id="logs"></section>
+
+    <section>
+        <span class="btn" id="download_firebase_data">Download Data ( .json )</span>
+    </section>
+    <!-- firebase IMP script -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- custom script -->
+    <!-- <script src="firebase_code.js"></script> -->
+    <script src="main.js" type="module"></script>
+</body>
+
+</html>
