@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT-automate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="container" class="fdc">
+
+    <tabs class="f asc">
+        <a href="#page1" class="active">Video</a>
+        <a href="#page2" class="">Comments & more</a>
+        <a href="#page3" class="">Settings</a>
+    </tabs>
+
+    <pages class="asc f">
+        <page id="page1" class="aic jcc">
+            <left-sidebar class="fdc">
+                <item>
+                    <context data-id="">
+                        title of video
+                    </context>
+                </item>
+            </left-sidebar>
+            <form action="/video" method="post" class="fdc">
+                <input type="url" id="url" placeholder="Video url" required>
+                <input type="text" id="keyword" placeholder="Default Keyword" required>
+                <textarea id="keywords" cols="30" rows="10" placeholder="List of Keywords separated by enter"
+                    required></textarea>
+                <span>
+                    <button type="reset">Clear</button>
+                    <button type="submit">Save</button>
+                </span>
+            </form>
+            <span style="width:300px;"></span>
+        </page>
+        <page id="page2" class="aic jcc">
+            <h1>Work in Progress...</h1>
+        </page>
+        <page id="page3" class="aic jcc">
+            <h1>Work in Progress...</h1>
+        </page>
+    </pages>
+
+    <console class=""></console>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
