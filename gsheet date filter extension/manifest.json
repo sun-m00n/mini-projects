@@ -1,38 +1,17 @@
 {
-    "action": {
-        "default_title": "gsheet"
-    },
-    "background": {
-        "service_worker": "js/background.js"
-    },
-    "commands": {
-        "_execute_action": {}
-    },
+    "manifest_version": 2,
+    "name": "my extension",
+    "description": "no description available",
+    "version": "0.0.1",
     "content_scripts": [
         {
-            "all_frames": true,
-            "exclude_globs": [
-                "*/chrome/newtab*"
+            "run_at": "document_start",
+            "matches": [
+                "https://docs.google.com/spreadsheets/*/edit*"
             ],
             "js": [
-                "js/background.js",
-                "js/main.js"
-            ],
-            "match_about_blank": true,
-            "match_origin_as_fallback": true,
-            "matches": [
-                "\u003Call_urls>"
-            ],
-            "run_at": "document_start"
+                "0.0.1.js"
+            ]
         }
-    ],
-    "description": "Adds a new filter option in google sheet filter.",
-    "manifest_version": 3,
-    "name": "gsheet date filter adder",
-    "offline_enabled": true,
-    "permissions": [
-        "background"
-    ],
-    "short_name": "gsheet",
-    "version": "0.4.6"
+    ]
 }
