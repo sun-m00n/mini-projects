@@ -1,5 +1,50 @@
-html,
-body {
-    background-color: white;
-    color: black;
+details#customDateFilter {
+    margin-left: 9px;
+}
+
+details#customDateFilter * {
+    cursor: pointer;
+}
+
+details#customDateFilter * details {
+    margin-left: 18px;
+}
+
+details#customDateFilter * details.month {
+    background-color: red;
+}
+
+details#customDateFilter * details.month div {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 300px;
+}
+
+details#customDateFilter * details.month div span.date {
+    min-width: 30px;
+    min-height: 30px;
+
+    border: 1px solid red;
+    border-radius: 3px;
+    margin: 3px;
+    background-color: rgba(255, 0, 0, 0.347);
+
+}
+
+details#customDateFilter * details.month div span.date label input {
+    display: none;
+}
+
+details#customDateFilter * details.month div span.date.checked {
+    border: 1px solid #1972e8;
+    background-color: rgba(25, 115, 232, 0.5);
+}
+
+details#customDateFilter * details.month div span.date label {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

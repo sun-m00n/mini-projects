@@ -6,45 +6,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        html,
-        body {
-            background-color: black;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <details id="customDateFilter" open>
+        <summary>Filter by Date</summary>
+        <div>
+            <details class="year" id="details-2022" open>
+                <summary class="year" id="summary-2022">
+                    <label><input type="checkbox">2022</label>
+                </summary>
+                <details class="month" id="details-2022December" open>
+                    <summary class="month" id="summary-2022December">
+                        <label><input type="checkbox">December</label>
+                    </summary>
+                    <div>
+                        <span class="date" id="2022December1"><label><input type="checkbox">1</label></span>
+                        <span class="date" id="2022December2"><label><input type="checkbox">2</label></span>
+                        <span class="date" id="2022December3"><label><input type="checkbox">3</label></span>
+                        <span class="date" id="2022December4"><label><input type="checkbox">4</label></span>
+                        <span class="date" id="2022December5"><label><input type="checkbox">5</label></span>
+                        <span class="date" id="2022December6"><label><input type="checkbox">6</label></span>
+                        <span class="date" id="2022December7"><label><input type="checkbox">7</label></span>
+                        <span class="date" id="2022December8"><label><input type="checkbox">8</label></span>
+                        <span class="date" id="2022December9"><label><input type="checkbox">9</label></span>
+                        <span class="date" id="2022December10"><label><input type="checkbox">10</label></span>
+                        <span class="date" id="2022December11"><label><input type="checkbox">11</label></span>
+                        <span class="date" id="2022December12"><label><input type="checkbox">12</label></span>
+                        <span class="date" id="2022December13"><label><input type="checkbox">13</label></span>
+                        <span class="date" id="2022December14"><label><input type="checkbox">14</label></span>
+                        <span class="date" id="2022December15"><label><input type="checkbox">15</label></span>
+                        <span class="date" id="2022December16"><label><input type="checkbox">16</label></span>
+                        <span class="date" id="2022December17"><label><input type="checkbox">17</label></span>
+                        <span class="date" id="2022December18"><label><input type="checkbox">18</label></span>
+                        <span class="date" id="2022December19"><label><input type="checkbox">19</label></span>
+                        <span class="date" id="2022December20"><label><input type="checkbox">20</label></span>
+                        <span class="date" id="2022December21"><label><input type="checkbox">21</label></span>
+                        <span class="date" id="2022December22"><label><input type="checkbox">22</label></span>
+                        <span class="date" id="2022December23"><label><input type="checkbox">23</label></span>
+                        <span class="date" id="2022December24"><label><input type="checkbox">24</label></span>
+                        <span class="date" id="2022December25"><label><input type="checkbox">25</label></span>
+                        <span class="date" id="2022December26"><label><input type="checkbox">26</label></span>
+                        <span class="date" id="2022December27"><label><input type="checkbox">27</label></span>
+                        <span class="date" id="2022December28"><label><input type="checkbox">28</label></span>
+                        <span class="date" id="2022December29"><label><input type="checkbox">29</label></span>
+                        <span class="date" id="2022December30"><label><input type="checkbox">30</label></span>
+                    </div>
+                </details>
+            </details>
+        </div>
+    </details>
 
-    <ul>
-        <li>
-            <ul>
-                <li>
-                    <ul>
-                        <li>ko</li>
-                        <li>ko</li>
-                        <li>ko</li>
-                        <li>ko</li>
-                        <li>ko</li>
-                        <li>ko</li>
-                    </ul>
-                </li>
-                <li>ko</li>
-                <li>ko</li>
-                <li>ko</li>
-                <li>ko</li>
-                <li>ko</li>
-            </ul>
-        </li>
-        <li>ko</li>
-        <li>ko</li>
-        <li>ko</li>
-        <li>ko</li>
-        <li>ko</li>
-    </ul>
 
-    <script src="0.0.1.js"></script>
+    <script>
+        let _id = "customDateFilter"
+        function wow(e) {
+            let p = e.target.parentNode.parentNode
+            let isChecked = (e.target).checked;
+            if (p.classList.contains("date")) {
+                if (isChecked) p.classList.add("checked")
+                if (!isChecked) p.classList.remove("checked")
+            }
+            if (p.classList.contains("month")) {
+                let sibling = p.parentNode.querySelector("div")
+                sibling.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+                    checkbox.checked = isChecked
+                    if (isChecked) checkbox.parentNode.parentNode.classList.add("checked")
+                    if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
+                })
+                return
+            }
+            if (p.classList.contains("year")) {
+                let gp = p.parentNode.querySelector("details")
+                gp.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
+                    checkbox.checked = isChecked
+                    if (isChecked) checkbox.parentNode.parentNode.classList.add("checked")
+                    if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
+                })
+                return
+            }
+        }
+        document.querySelectorAll("details * input[type='checkbox']").forEach(checkbox => checkbox.onclick = wow)
+    </script>
 </body>
 
 </html>

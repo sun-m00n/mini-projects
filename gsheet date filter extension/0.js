@@ -72,7 +72,5 @@
 
     var target = filter_menu;
     observer.observe(target, { attributes: true, attributeFilter: ['style'] });
-
-
 })();
 // 8097814045

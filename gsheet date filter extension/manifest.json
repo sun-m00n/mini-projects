@@ -9,8 +9,11 @@
             "matches": [
                 "https://docs.google.com/spreadsheets/*/edit*"
             ],
+            "css": [
+                "style.css"
+            ],
             "js": [
-                "0.0.1.js"
+                "2.js"
             ]
         }
     ]
