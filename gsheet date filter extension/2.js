@@ -10,6 +10,13 @@ let asset = {
             m: asset.namesOfMonth[t.getMonth()],
             d: t.getDate()
         }
+    },
+    parent: function (ele, level) {
+        while (level > 0) {
+            ele = ele.parentNode
+            level--
+        }
+        return ele
     }
 }
 
@@ -39,6 +46,7 @@ let
         },
         customFilter: {
             ids: [],
+            filterByDateData: "",
             add: {
                 filterByDate: function () {
                     let { ymd } = asset
@@ -55,15 +63,27 @@ let
                         filter_data[y][m] = {}
                     }
                     // days
+                    let child_ids = []
+                    let r = () => {
+                        let s = Math.round(Math.random() * 1e9)
+                        if (child_ids.includes(s))
+                            r()
+                        child_ids.push(s)
+                        return s
+                    }
+
                     for (let child of childrens) {
                         let { y, m, d } = ymd(child.innerText)
-                        filter_data[y][m][d] = child.id
+
+                        let t = r()
+                        child.setAttribute("data-id-parent", t)
+                        filter_data[y][m][d] = t
                     }
 
                     // generate tag
                     let ele = document.createElement("p")
                     let _checkbox = (context) => `<label><input type="checkbox">${context}</label>`;
-                    let _date = (y, m, d) => `<span class="date" id="${d}-${m}-${y}><label><input type="checkbox">${d}</label></span>`;
+                    let _date = (y, m, d, dataID) => `<span class="date" id="${d} ${m} ${y}"><label><input type="checkbox" data-id="${dataID}">${d}</label></span>`;
 
                     let _ele = `<details id="customDateFilter"><summary>Filter by Date</summary><div>`
                     for (let y in filter_data) {
@@ -71,7 +91,7 @@ let
                         for (let m in filter_data[y]) {
                             let _m = `<details><summary class="month" id="summary-${y}-${m}">${_checkbox(m)}</summary><div>`
                             for (let d in filter_data[y][m]) {
-                                _m += _date(y, m, d)
+                                _m += _date(y, m, d, filter_data[y][m][d])
                             }
                             _m += `</div></details>`
                             _y += _m
@@ -91,34 +111,59 @@ let
                     if (document.querySelector("#customDateFilter"))
                         document.querySelector("#customDateFilter").remove()
 
+                    customTag.querySelectorAll("input[type='checkbox']").
+                        forEach(function (checkbox) {
+                            checkbox.addEventListener("click", FilterMenu.customFilter.add.filterByDateEventListner, true)
+                        })
+
+                    customTag.querySelectorAll("span.date label input[type='checkbox']")
+                        .forEach(function (checkbox) {
+                            checkbox.addEventListener("change", function (e) {
+                                let data_id = (e.target).getAttribute("data-id")
+                                let selected = e.target.checked
+                                let source_ele = document.querySelector(`[data-id-parent="${data_id}"]`)
+                                source_ele.setAttribute("aria-checked", selected)
+                                if (selected)
+                                    source_ele.classList.add("goog-option-selected")
+                                else if (!selected)
+                                    source_ele.classList.remove("goog-option-selected")
+                            })
+                        })
+
                     parent.insertBefore(customTag, child)
-                    customTag.querySelectorAll("input[type='checkbox']").forEach(checkbox => checkbox.onclick = FilterMenu.customFilter.add.filterByDateEventListner)
                     FilterMenu.customFilter.ids.push(customTag.id)
+                    FilterMenu.customFilter.filterByDateData = filter_data
                 },
                 filterByDateEventListner: function (e) {
+                    let { parent } = asset
                     let p = e.target.parentNode.parentNode
                     let isChecked = (e.target).checked;
+                    // date
                     if (p.classList.contains("date")) {
                         if (isChecked) p.classList.add("checked")
-                        if (!isChecked) p.classList.remove("checked")
+                        else if (!isChecked) p.classList.remove("checked")
+                        console.log(p)
                     }
-                    if (p.classList.contains("month")) {
-                        let sibling = p.parentNode.querySelector("div")
+                    // month
+                    else if (p.classList.contains("month")) {
+                        let sibling = p.parentNode.parentNode.querySelector("div")
                         sibling.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
                             checkbox.checked = isChecked
                             if (isChecked) checkbox.parentNode.parentNode.classList.add("checked")
-                            if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
+                            else if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
                         })
-                        return
+                        console.log(sibling)
                     }
-                    if (p.classList.contains("year")) {
-                        let gp = p.parentNode.querySelector("details")
+                    // year
+                    else if (p.classList.contains("year")) {
+                        // let gp = p.parentNode.parentNode.querySelector("details")
+                        let gp = parent(p, 2).querySelector("details")
                         gp.querySelectorAll("input[type='checkbox']").forEach((checkbox) => {
                             checkbox.checked = isChecked
                             if (isChecked) checkbox.parentNode.parentNode.classList.add("checked")
-                            if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
+                            else if (!isChecked) checkbox.parentNode.parentNode.classList.remove("checked")
                         })
-                        return
+                        console.log(gp)
                     }
                 }
             },
@@ -136,7 +181,8 @@ let
         selector: "body",
         mutationObserver: new MutationObserver(function () {
             if (_$(FilterMenu.selector)) {
-                // start observing filter menu if exists.
+                FilterMenu.customFilter.add.filterByDate()
+                // start observing filter menu if exists
                 FilterMenu.observer.start()
                 // disconnect body observer
                 Body.observer.end()
@@ -152,11 +198,6 @@ let
 document.addEventListener("DOMContentLoaded", function () {
     console.log("DomContentLoaded")
     Body.observer.start()
-    let _css = document.createElement("link")
-    _css.type = "text/css"
-    _css.rel = "stylesheet"
-    _css.href = "./style.css"
-    document.querySelector("html").append(_css)
 });
 
 

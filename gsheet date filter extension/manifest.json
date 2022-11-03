@@ -13,7 +13,9 @@
                 "style.css"
             ],
             "js": [
-                "2.js"
+                "./js/helper-functions.js",
+                "./js/date-filter.js",
+                "./js/change-detection.js"
             ]
         }
     ]
