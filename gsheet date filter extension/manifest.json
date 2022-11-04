@@ -14,7 +14,7 @@
             ],
             "js": [
                 "./js/helper-functions.js",
-                "./js/date-filter.js",
+                "./js/date-filter2.js",
                 "./js/change-detection.js"
             ]
         }

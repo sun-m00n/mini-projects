@@ -1,8 +1,10 @@
 'use strict'
 
-function Extract_Dates() {
+function extract_Dates() {
     let
-        nodes = document.querySelector("#\\:xo\\.content-el").children,
+        // nodes = _$("body > div.goog-menu.goog-menu-vertical.waffle-filterbox-container.docs-material * div.waffle-filterbox-content").children,
+        nodes = document.querySelectorAll("div.goog-menuitem.goog-option-selected.apps-menuitem.goog-option"),
+        // nodes = document.querySelector("#\\:xo\\.content-el").children,
         _data = {};
 
     // years
@@ -27,7 +29,7 @@ function Extract_Dates() {
     return _data
 }
 
-function Generate_Tag(_data) {
+function generate_Tag(_data) {
     let ele = document.createElement("p"),
         _checkbox = (context) => `<label><input type="checkbox">${context}</label>`,
         _date = (y, m, d, dataID) => {
@@ -67,13 +69,20 @@ let EventListeners = {
             let data_id = n.querySelector("* input[type='checkbox']").getAttribute("data-id"),
                 source_ele = document.querySelector(`[data-id-parent="${data_id}"]`)
             n.checked = selected
+
+            let source_ele_checked = source_ele.getAttribute("aria-checked")
             source_ele.setAttribute("aria-checked", selected)
 
             if (selected) {
                 source_ele.classList.add("goog-option-selected")
+                if (!source_ele_checked)
+                    source_ele.querySelector("goog-menuitem-checkbox").click()
                 n.classList.add("checked")
             }
             else if (!selected) {
+                if (source_ele_checked)
+                    source_ele.querySelector("goog-menuitem-checkbox").click()
+                // source_ele.click()
                 source_ele.classList.remove("goog-option-selected")
                 n.classList.remove("checked")
             }
@@ -86,7 +95,7 @@ let EventListeners = {
                 node = node.parentNode.parentNode
                 if (node.classList.contains("date")) EventListeners.toggle.Date(node, selected)
                 // if (node.classList.contains("date")) console.log(node)
-                else if (selected) node.classList.add("checked")
+                if (selected) node.classList.add("checked")
                 else if (!selected) node.classList.remove("checked")
             })
         },
@@ -98,7 +107,7 @@ let EventListeners = {
                 node = node.parentNode.parentNode
                 if (node.classList.contains("date")) EventListeners.toggle.Date(node, selected)
                 // if (node.classList.contains("date")) console.log(node)
-                else if (selected) node.classList.add("checked")
+                if (selected) node.classList.add("checked")
                 else if (!selected) node.classList.remove("checked")
             })
         },
@@ -120,13 +129,14 @@ function attach_Event_Listeners(tag) {
     // all checkboxes
     let tags = tag.querySelectorAll("input[type='checkbox']")
     tags.forEach(tag => tag.onclick = EventListeners.toggle.all)
+
     // individuals checkboxes
     // tags = tag.querySelectorAll("span.date label input[type='checkbox']")
     // tags.forEach(checkbox => checkbox.onchange = EventListeners.toggle_Date)
     return tag
 }
 
-function apply_Filters(tag, dates) {
+function apply_Filters(tag) {
     // date
     let tags = tag.querySelectorAll("input[data-id]")
     tags.forEach(function (tag) {
@@ -135,7 +145,27 @@ function apply_Filters(tag, dates) {
         if (selected) EventListeners.toggle.Date(tag.parentNode.parentNode, selected)
     })
 
-    // month
+    // year
+    let years = tag.querySelectorAll("summary.year")
+    years.forEach(function (y) {
+        let year = y.parentNode,
+            months = year.querySelectorAll("summary.month")
+        months.forEach(m => {
+            let all = m.parentNode.querySelectorAll("span.date").length,
+                checked = m.parentNode.querySelectorAll("span.date.checked").length
+            if (all == checked) {
+                m.querySelector("input[type='checkbox']").checked = true
+                m.classList.add("checked")
+            }
+        })
+        let all = year.querySelectorAll("summary.month").length,
+            checked = year.querySelectorAll("summary.month.checked").length
+        if (all == checked) {
+            y.querySelector("input[type='checkbox']").checked = true
+            y.classList.add("checked")
+        }
+    })
+
 
     return tag
 }
@@ -143,8 +173,8 @@ function apply_Filters(tag, dates) {
 function Insert_Date_Filter() {
     Remove_Date_Filter()
 
-    let dates = Extract_Dates(),
-        tag = Generate_Tag(dates);
+    let dates = extract_Dates(),
+        tag = generate_Tag(dates);
 
     tag = attach_Event_Listeners(tag)
     tag = apply_Filters(tag, dates)
@@ -153,6 +183,15 @@ function Insert_Date_Filter() {
         parent = node.parentNode
 
     parent.insertBefore(tag, node)
+
+    // let nodes = _$("body > div.goog-menu.goog-menu-vertical.waffle-filterbox-container.docs-material * div.waffle-filterbox-content").children
+    // nodes.forEach(function (node) {
+    //     node.onclick = function (e) {
+    //         let id = e.getAttribute("data-id-parent"),
+    //             n = _$(`[data-id='${id}'`).parentNode
+    //         EventListeners.toggle.Date(n, e.getAttribute("aria-checked"))
+    //     }
+    // })
 }
 
 function Remove_Date_Filter() {

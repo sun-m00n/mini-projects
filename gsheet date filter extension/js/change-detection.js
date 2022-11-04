@@ -24,7 +24,7 @@ let Body_Observer = new MutationObserver(function () {
         // start observing filter menu if exists
         Filter_Menu_Observer.observe(_$(filter_menu_selector), { attributes: true, attributeFilter: ['style'] })
 
-        Body_Observer.disconnect()
+        // Body_Observer.disconnect()
     }
 })
 
