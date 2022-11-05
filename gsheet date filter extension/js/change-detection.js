@@ -33,4 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
     Body_Observer.observe(_$("body"), { childList: true })
 });
 
+// let o = new MutationObserver(function (mutations) {
+//     console.log(mutations)
+// })
+
+// // start observe changes in body when dom is loaded
+// document.addEventListener("DOMContentLoaded", function () {
+//     o.observe(document.querySelector("body"), {
+//         childList: true, // observe direct children
+//         subtree: true, // and lower descendants too
+//         characterDataOldValue: true // pass old data to callback
+//     })
+// });
+
 // end

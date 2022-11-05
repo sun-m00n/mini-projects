@@ -93,13 +93,23 @@ function identifyParent(tag) {
     return { parentName: tagName, parent: tag }
 }
 function performClickOnUid(id, state) {
-    let t = document.querySelector(`[uid='${id}']`)
+    let t = document.querySelector(`[uid='${id}']`),
+        cid = t.id
+    // t.parentNode.parentNode.toggleAttribute("aria-activedescendant", true)
+    t.parentNode.parentNode.setAttribute("aria-activedescendant", cid)
+    t.classList.add("goog-menuitem-highlight")
+
+    t.setAttribute("aria-checked", state)
     if (state)
         t.classList.add("goog-option-selected")
     else
         t.classList.remove("goog-option-selected")
-    t.setAttribute("aria-checked", state)
-    t.click()
+    t.querySelector(".goog-menuitem-content").click()
+
+    t.classList.remove("goog-menuitem-highlight")
+    t.parentNode.parentNode.setAttribute("aria-activedescendant", "")
+    // t.parentNode.parentNode.click()
+    // t.parentNode.parentNode.toggleAttribute("aria-activedescendant", false)
 }
 let clickedOn = {
     date: function (dateTag, status) {
