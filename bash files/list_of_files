@@ -1,0 +1,16 @@
+ Volume in drive C is Windows
+ Volume Serial Number is 3AA1-B835
+
+ Directory of C:\Users\it\Desktop\Independent PROJECTs\bash files
+
+07-11-2022  18:00    <DIR>          .
+29-10-2022  17:40    <DIR>          ..
+05-10-2022  17:32                21 .pull_from_github.bat
+05-10-2022  17:32               124 .push_to_github.bat
+07-11-2022  18:03                 0 list_of_files
+09-10-2022  11:53             1,809 profile.lnk
+09-10-2022  11:53             1,809 profile1.lnk
+09-10-2022  11:53             1,809 profile2.lnk
+07-11-2022  18:03               373 profiles.cmd
+               7 File(s)          5,945 bytes
+               2 Dir(s)  16,801,751,040 bytes free
