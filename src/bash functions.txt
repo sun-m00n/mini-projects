@@ -1,0 +1,22 @@
+/****************************
+* FETCH REPOSITARY FROM GIT *
+*****************************/
+set /p "commit-message= Commit message : "
+
+git add --all
+git commit -m "%commit-message%"
+git push --all
+
+
+/***************************
+* PULL REPOSITARY FROM GIT *
+****************************/
+git pull
+
+
+/*************************
+* LAUNCH CHROME PROFILES *
+**************************/
+// profiles shortcut should be on same dir
+SET link=https://www.youtube.com/
+START profile %link%

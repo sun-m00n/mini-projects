@@ -1,0 +1,40 @@
+<html>
+
+<body>
+
+    <label>
+        Urls seperated by comma (,)
+        <textarea cols="30" rows="10"></textarea>
+    </label>
+    <button onclick="download()">Download</button>
+
+    <script>
+        function download() {
+            let input = document.querySelector("textarea")
+            if (input && input.value > 0) {
+                arr = input.value.split(",")
+                arr.forEach(url => {
+                    // fetch file from url
+                    fetch(url)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            downloadToFile(blob, url);
+                        });
+                });
+            }
+        }
+
+        function downloadToFile(content, filename) {
+            const a = document.createElement('a');
+            const file = new Blob([content], { type: "txt" });
+
+            a.href = URL.createObjectURL(file);
+            a.download = filename;
+            a.click();
+
+            URL.revokeObjectURL(a.href);
+        };
+    </script>
+</body>
+
+</html>
