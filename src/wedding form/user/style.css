@@ -1,0 +1,19 @@
+@font-face {
+    font-family: mangal;
+    src: url("/lib/Font Mangal Regular/Mangal Regular.ttf");
+}
+
+* {
+    font-family: mangal;
+    font-size: medium;
+}
+
+h1 {
+    font-size: x-large;
+}
+
+label span {
+    width: 0;
+    height: 0;
+    /* display: contents; */
+}
