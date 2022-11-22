@@ -12,8 +12,42 @@ h1 {
     font-size: x-large;
 }
 
-label span {
-    width: 0;
-    height: 0;
-    /* display: contents; */
+.input {
+    position: relative;
+}
+
+.input__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    height: fit-content;
+    width: fit-content;
+    padding: 0 3px;
+
+    transform: translate(0.5rem, 0);
+    transform-origin: 0 0;
+    transition: transform 120ms ease-in;
+}
+
+.input__field:not(:-moz-placeholder-shown)+.input__label {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+.input__field:not(:-ms-input-placeholder)+.input__label {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+.input__field:focus+.input__label,
+.input__field:not(:placeholder-shown)+.input__label {
+    transform: translate(0.25rem, -50%) scale(0.8);
+    background-color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* gap: 1px; */
 }
