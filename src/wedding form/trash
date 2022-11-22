@@ -37,7 +37,6 @@
     /* line-height: 1.2; */
     transform: translate(0.1rem, -120%);
 }
-
 .input__field {
     box-sizing: border-box;
     display: block;
