@@ -28,14 +28,14 @@ const Form = {
     ]
 }
 
-Form.fields.forEach(fieldName => {
-    _$("form").innerHTML += `<label class="input">
-    <input class="input__field" type="text" placeholder=" " />
-    <span class="input__label">${fieldName}</span>
-            </label><br>`
-})
-_$("form").innerHTML += `<button>Submit</button>`
+// Form.fields.forEach(fieldName => {
+//     _$("form").innerHTML += `<label class="input">
+//     <input class="input__field" type="text" placeholder=" " />
+//     <span class="input__label">${fieldName}</span>
+//             </label><br>`
+// })
+// _$("form").innerHTML += `<button>Submit</button>`
 
-window.onfocus = function () {
-    window.location.reload()
-}
+// window.onfocus = function () {
+//     window.location.reload()
+// }

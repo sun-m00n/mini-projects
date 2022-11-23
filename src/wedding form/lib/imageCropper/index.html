@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/lib/Croppr.js/croppr.min.css">
+    <link rel="stylesheet" href="/lib/Croppr.js/croppr.css">
+    <script src="/lib/Croppr.js/croppr.min.js"></script>
+    <script src="/lib/Croppr.js/croppr.js"></script>
+
+</head>
+
+<body>
+    <input type="file" accept="image/*">
+
+    <script type="module">
+        // var Croppr = require('croppr');
+        import Croppr from '/lib/Croppr.js/croppr.js';
+    </script>
+    <script>
+        const $ = selector => document.querySelector(selector)
+        $("input").onchange = function (e) {
+            let file = e.target.files[0]
+            let img = document.createElement("img")
+            let reader = new FileReader()
+            reader.onload = function () {
+                img.src = reader.result
+                crop(img)
+            }
+        }
+
+        function crop(imageTag) {
+            let croppr = new Croppr(imageTag);
+            console.log(croppr)
+            console.log(croppr.getValue())
+        }
+    </script>
+</body>
+
+</html>
