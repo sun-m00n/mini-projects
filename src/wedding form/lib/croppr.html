@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Croppr.js/croppr.css">
+    <script src="Croppr.js/croppr.js"></script>
+
+    <style>
+        /* img#opt {
+            width: auto;
+        } */
+
+        #croppr_window,
+        #croppr_window .viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #00000030;
+            z-index: 99999;
+        }
+
+        #croppr_window .body {
+            width: 90vw;
+            height: 90vh;
+        }
+
+        #croppr_window.open,
+        #croppr_window .viewer.open {
+            display: initial;
+        }
+
+        #croppr_window canvas {
+            height: 0;
+            width: 0;
+        }
+
+        /* #croppr_window .viewer {
+            display: none;
+        } */
+
+        /* #croppr_window .viewer.open img{
+            display: initial;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #00000030;
+            z-index: 99999;
+        } */
+
+    </style>
+</head>
+
+<body>
+    <input type="file" accept="image/*">
+    <button onclick="StartCroppr(document.querySelector('input').files[0])">Crop</button>
+    <button onclick="ViewCroppedImage(document.querySelector('input'))">View</button>
+    <img src="" alt="" id="opt">
+
+    <div id="croppr_window" class="">
+        <span class="head">
+            <button class="exit" onclick="CloseCroppr()">Close</button>
+            <button class="crop" onclick="Crop()">Crop</button>
+        </span>
+        <span class="body">
+            <img id="croppr_img" src="">
+        </span>
+        <span class="viewer">
+            <button onclick="CloseViewer()">Close</button>
+            <img src>
+        </span>
+    </div>
+    <script>
+        let img
+        let croppr
+        let current_input_tag
+
+        function InitCroppr() {
+            let file_input_tags = document.querySelectorAll("input[type='file']")
+            file_input_tags.forEach(function (tag) {
+                tag.onchange = function (e) {
+                    let file = e.target.files[0]
+                    if (file.type.includes("image")) {
+                        current_input_tag = e.target
+                        StartCroppr(file)
+                    }
+                }
+            })
+        }
+        function SetCropprImage(file) {
+            let reader = new FileReader()
+            reader.onload = () => document.querySelector("#croppr_img").src = reader.result;
+            reader.readAsDataURL(file)
+        }
+
+        function StartCroppr(file) {
+            SetCropprImage(file)
+            document.querySelector("#croppr_window").classList.add("open")
+            let img = document.querySelector("#croppr_img")
+            img.onload = function () {
+                croppr = new Croppr(img, {
+                    startSize: [0, 0, '%'],
+                    // onInitialize: function (instance) { console.log(instance); },
+                    // onCropStart: function (data) { console.log('start', data); },
+                    // onCropEnd: function (data) { console.log('end', data); },
+                    // onCropMove: function (data) { console.log('move', data); }
+                });
+            }
+        }
+        function CloseCroppr() {
+            document.querySelector("#croppr_window").classList.remove("open")
+        }
+        function Crop() {
+            let r = croppr.getValue()
+            if (!r) return
+
+            let canvas = document.createElement("canvas")
+            let source = document.querySelector("#croppr_window .body img")
+            ctx = canvas.getContext("2d")
+
+            canvas.width = r.width
+            canvas.height = r.height
+            // ctx.drawImage(source, 0, 0, source.width, source.height, cropprValue.x, cropprValue.y, cropprValue.x + cropprValue.width, cropprValue.y + cropprValue.height)
+            ctx.drawImage(source,
+                r.x, r.y, r.width, r.height,
+                0, 0, r.width, r.height
+            )
+
+            current_input_tag.setAttribute("data-of-cropped-image", canvas.toDataURL("image/jpeg"))
+            // let opt = document.querySelector("#opt")
+            // opt.src = canvas.toDataURL("image/jpeg")
+
+            // opt.onload = CloseCroppr
+            CloseCroppr()
+        }
+
+        function ViewCroppedImage(tag) {
+            let input = tag
+            let image_data = input.getAttribute("data-of-cropped-image")
+            // console.log(image_data)
+            document.querySelector("#croppr_window").classList.add("open")
+            let viewer = document.querySelector(".viewer")
+            viewer.classList.add("open")
+            console.log(viewer.querySelector("img"))
+            viewer.querySelector("img").src = image_data
+        }
+        function CloseViewer() {
+            document.querySelector("#croppr_window").classList.remove("open")
+            document.querySelector(".viewer").classList.remove("open")
+        }
+    </script>
+    <script>
+        InitCroppr()
+    </script>
+</body>
+
+</html>
