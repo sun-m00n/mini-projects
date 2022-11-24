@@ -8,12 +8,16 @@
     <title>आगरी समाज प्रबोधन संस्था</title>
     <link rel="stylesheet" href="/user/style.css">
     <link rel="stylesheet" href="./style.css">
+
+    <link rel="stylesheet" href="../lib/CustomCroppr/style.css">
+    <script src="../lib/CustomCroppr/croppr.min.js"></script>
+    <script src="../lib/CustomCroppr/main.js"></script>
+
 </head>
 
 <body>
     <form action="">
         <h1>आगरी समाज प्रवोधन संस्था</h1>
-        <br>
         <label class="textBox">
             <input class="input" type="text" name="FullNameOfBride_Groom" placeholder=" ">
             <span>वधू /वराचे संपूर्ण नाव</span>
@@ -42,6 +46,7 @@
                 <input class="input" type="number" name="HeightInFoot" placeholder=" ">
                 <span>फुट</span>
             </label>
+            <p></p>
             <label class="textBox">
                 <input class="input" type="number" name="HeightInInch" placeholder=" ">
                 <span>इंच</span>
@@ -79,11 +84,11 @@
         </span>
         <br>
         <label class="textBox">
-            <input class="input" type="text" name="Expectations" placeholder=" ">
+            <textarea class="input" type="text" name="Expectations" placeholder=" "></textarea>
             <span>वधू /वराची अपेक्षा</span>
         </label>
         <br>
-        <span>
+        <span class="column">
             <p>इतर माहीती</p>
             <label>
                 <input type="radio" name="OtherInfo" placeholder=" ">
@@ -138,19 +143,37 @@
         <span>
             <p>अर्जदाराची फोटो</p>
             <input type="file" name="ApplicantImage" accept="image/*">
-            <button class="txt_btn">Crop</button>
-            <button class="txt_btn">View</button>
+            <button type="button" class="txt_btn">Crop</button>
+            <button type="button" class="txt_btn">View</button>
         </span>
         <br>
         <span>
             <p>अर्जदाराची सही</p>
             <input type="file" name="ApplicantSign" accept="image/*">
-            <button class="txt_btn">Crop</button>
-            <button class="txt_btn">View</button>
+            <button type="button" class="txt_btn">Crop</button>
+            <button type="button" class="txt_btn">View</button>
         </span>
         <br>
         <button type="submit">Submit</button>
     </form>
+
+
+    <div id="croppr_window" class="">
+        <span id="croppr_editor">
+            <span id="croppr_editor_head">
+                <button type="button">Close</button>
+                <button type="button">Crop</button>
+            </span>
+            <span id="croppr_editor_body">
+                <img id="croppr_editor_body_img" src>
+            </span>
+        </span>
+        <span id="croppr_viewer">
+            <button type="button">Close</button>
+            <img id="croppr_viewer_img" src>
+        </span>
+    </div>
+
 
     <!-- <script src="/user/main.js"></script> -->
     <script src="./main.js"></script>

@@ -1,0 +1,67 @@
+@import url("croppr.min.css");
+
+/* necessary */
+#croppr_window,
+#croppr_editor,
+#croppr_viewer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000030;
+    z-index: 99999;
+}
+
+#croppr_editor_body {
+    width: 90vw;
+    height: 90vh;
+}
+
+#croppr_window.open,
+#croppr_editor.open,
+#croppr_viewer.open {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* designing view */
+#croppr_editor_head {
+    display: flex !important;
+    width: 96%;
+    justify-content: space-between;
+}
+
+#croppr_window * button {
+    /* padding: 8px 32px; */
+    background-color: #fff;
+    margin: 9px;
+    border: none;
+    font-size: medium;
+    /* min-width: 100px; */
+    /* max-width: 150px; */
+    /* border-radius: 6px; */
+    /* box-shadow: 0 0 4px black; */
+    /* font-size: 16px; */
+    /* letter-spacing: 1px; */
+}
+
+#croppr_window * button:hover {
+    background-color: tomato;
+    color: #fff;
+}
+
+#croppr_viewer button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#croppr_viewer img {
+    width: 60%;
+    max-width: 72%;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="croppr.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <input type="file" accept="image/*">
+    <button>Crop</button>
+    <button>View</button>
+
+    <div id="croppr_window" class="">
+        <span id="croppr_editor">
+            <span id="croppr_editor_head">
+                <button>Close</button>
+                <button>Crop</button>
+            </span>
+            <span id="croppr_editor_body">
+                <img id="croppr_editor_body_img" src>
+            </span>
+        </span>
+        <span id="croppr_viewer">
+            <button>Close</button>
+            <img id="croppr_viewer_img" src>
+        </span>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        let btns = document.querySelectorAll("button")
+        CustomCroppr.init({ input: document.querySelector('input'), crop: btns[0], view: btns[1] })
+        // CustomCroppr.init({ input: document.querySelector('input'), crop: btns[0] })
+        // CustomCroppr.init({ input: document.querySelector('input'), view: btns[1] })
+        // CustomCroppr.init({ input: document.querySelector('input') })
+    </script>
+</body>
+
+</html>
