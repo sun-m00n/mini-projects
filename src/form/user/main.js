@@ -18,7 +18,7 @@ let input_names = [];
     input_names = new Set(names)
 })();
 
-function reduceImageSize(file) {
+function reduceImageSize2(file) {
     console.log(file)
     let img = new Image()
     // let blobURL = window.URL.createObjectURL(file)
@@ -49,7 +49,9 @@ function handleFormSubmission(e) {
             // if (cropped_image_data == null) val = generateSubmissionDataOfImage(field.files[0])
             // else if (cropped_image_data != null) val = cropped_image_data
             // console.log(val)
-            reduceImageSize(field.files[0])
+            console.log(
+                reduceImageSize(field.files[0])
+            )
         }
     })
 }
