@@ -8,23 +8,184 @@
     <title>आगरी समाज प्रबोधन संस्था</title>
     <link rel="stylesheet" href="/user/style.css">
     <link rel="stylesheet" href="./style.css">
+
+    <link rel="stylesheet" href="../lib/CustomCroppr/style.css">
+    <script src="../lib/CustomCroppr/croppr.min.js"></script>
+    <script src="../lib/CustomCroppr/main.js"></script>
+
 </head>
 
 <body>
-
-    <input type="date" name="" id="">
-    <input type="time" name="" id="">
-
     <form action="">
-        <h1>आगरी समाज प्रबोधन संस्था</h1>
-        <!-- <label>
-            <span>वधू/वराचे संपूर्ण नाव</span>
-            <input type="text">
-        </label> -->
+        <span id="heading">
+            <img src="../lib/logo.jfif">
+            <h1>आगरी समाज प्रवोधन<br>संस्था</h1>
+        </span>
+        <p class="hr"></p>
+        <label class="textBox">
+            <input class="input" type="text" name="FullNameOfBride_Groom" placeholder=" ">
+            <span>वधू /वराचे संपूर्ण नाव</span>
+        </label>
+        <label class="textBox">
+            <textarea class="input" name="Address" placeholder=" "></textarea>
+            <span>पत्ता</span>
+        </label>
+        <br>
+        <label class="textBox">
+            <input class="input" type="text" name="PlaceOfBirth" placeholder=" ">
+            <span>जन्मस्थळ</span>
+        </label>
+        <label>
+            <p>जन्म तारीख</p>
+            <input type="date" name="BirthDate" placeholder=" ">
+        </label>
+        <label>
+            <p>जन्म वेळ</p>
+            <input type="time" name="BirthTime" placeholder=" ">
+        </label>
+        <br>
+        <span>
+            <p>उंची</p>
+            <label class="textBox">
+                <input class="input" type="number" name="HeightInFoot" placeholder=" ">
+                <span>फुट</span>
+            </label>
+            <p></p>
+            <label class="textBox">
+                <input class="input" type="number" name="HeightInInch" placeholder=" ">
+                <span>इंच</span>
+            </label>
+        </span>
+        <br>
+        <label class="textBox">
+            <input class="input" type="text" name="DescribeColor" placeholder=" ">
+            <span>वर्ण(रंग)</span>
+        </label>
+
+        <label class="textBox">
+            <input class="input" type="text" name="Qualification" placeholder=" ">
+            <span>शिक्षण</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="text" name="Occupation" placeholder=" ">
+            <span>नोकरी / व्यवसाय</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="number" name="Salary" placeholder=" ">
+            <span>मसिक उत्पन्</span>
+        </label>
+        <br>
+        <span>
+            <p>राहते घर</p>
+            <label class="center">
+                <input type="radio" name="Home" placeholder=" " value="स्वतःचे">
+                <span>स्वतःचे</span>
+            </label>
+            <label class="center">
+                <input type="radio" name="Home" placeholder=" " value="भाड्याचे">
+                <span>भाड्याचे</span>
+            </label>
+        </span>
+        <br>
+        <label class="textBox">
+            <textarea class="input" type="text" name="Expectations" placeholder=" "></textarea>
+            <span>वधू /वराची अपेक्षा</span>
+        </label>
+        <!-- <br> -->
+        <span class="column">
+            <p>इतर माहीती</p>
+            <label class="center">
+                <input type="radio" name="OtherInfo" placeholder=" " value="प्रथम">
+                <span>प्रथम</span>
+            </label>
+            <label class="center">
+                <input type="radio" name="OtherInfo" placeholder=" " value="घटस्फोटीत">
+                <span>घटस्फोटीत</span>
+            </label>
+            <label class="center">
+                <input type="radio" name="OtherInfo" placeholder=" " value="विधुर">
+                <span>विधुर</span>
+            </label>
+            <label class="center">
+                <input type="radio" name="OtherInfo" placeholder=" " value="विधवा">
+                <span>विधवा</span>
+            </label>
+        </span>
+        <br>
+        <label class="textBox">
+            <input class="input" type="text" name="FatherFullName" placeholder=" ">
+            <span>वडिलांचे पूर्ण नाव</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="text" name="GuardianOccupation" placeholder=" ">
+            <span>व्यवसाय / नोकरी</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="text" name="MotherFullName" placeholder=" ">
+            <span>आईचे पूर्ण नाव</span>
+        </label>
+        <label class="textBox">
+            <textarea class="input" name="FamilyInfo" placeholder=" "></textarea>
+            <span>कौटुंवीक माहीती</span>
+        </label>
+        <br>
+        <label class="textBox">
+            <input class="input" type="text" name="ApplicantFullName" placeholder=" ">
+            <span>अर्जदाराचे पूर्ण नाव</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="text" name="Bride_GroomRelationship" placeholder=" ">
+            <span>वधू/वराचे नाते</span>
+        </label>
+        <label class="textBox">
+            <input class="input" type="tel" name="ContactNo" placeholder=" ">
+            <span>संपर्क क.</span>
+        </label>
+        <label>
+            <p>दिनांक</p>
+            <input type="date" name="FormFilledDate" placeholder=" ">
+        </label>
+        <br>
+        <span>
+            <p>अर्जदाराची फोटो</p>
+            <input type="file" name="ApplicantImage" accept="image/*">
+            <span class="center">
+                <button type="button" class="txt_btn">Crop</button>
+                <button type="button" class="txt_btn">View</button>
+            </span>
+        </span>
+        <br>
+        <span>
+            <p>अर्जदाराची सही</p>
+            <input type="file" name="ApplicantSign" accept="image/*">
+            <span class="center">
+                <button type="button" class="txt_btn">Crop</button>
+                <button type="button" class="txt_btn">View</button>
+            </span>
+        </span>
+        <br>
+        <button type="submit">Submit</button>
     </form>
 
 
-    <script src="/user/main.js"></script>
+    <div id="croppr_window" class="">
+        <span id="croppr_editor">
+            <span id="croppr_editor_head">
+                <button type="button">Close</button>
+                <button type="button">Crop</button>
+            </span>
+            <span id="croppr_editor_body">
+                <img id="croppr_editor_body_img" src>
+            </span>
+        </span>
+        <span id="croppr_viewer">
+            <button type="button">Close</button>
+            <img id="croppr_viewer_img" src>
+        </span>
+    </div>
+
+
+    <!-- <script src="/user/main.js"></script> -->
     <script src="./main.js"></script>
 </body>
 
