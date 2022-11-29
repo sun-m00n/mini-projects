@@ -4,7 +4,6 @@ let CustomCroppr = {
         img: "",
         croppr: "",
         current_input_tag: "",
-        // previous_input_tag: ""
     },
     init: function (a = { input, crop: undefined, view: undefined }) {
 
@@ -37,6 +36,10 @@ let CustomCroppr = {
     },
     editor: {
         open: function () {
+            if (CustomCroppr.$.current_input_tag.getAttribute("data-of-cropped-image") == 'null') document.querySelector("#croppr_editor_head button").setAttribute('hidden', true)
+            else document.querySelector("#croppr_editor_head button").removeAttribute('hidden')
+
+            let x = 0, y = 0, t = "px"
 
             let file = CustomCroppr.$.current_input_tag.files[0]
             if (!file) return
@@ -49,18 +52,13 @@ let CustomCroppr = {
 
                 CustomCroppr.$.img = document.querySelector("#croppr_editor_body_img")
                 CustomCroppr.$.img.onload = function () {
-                    CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, { startSize: [15, 15, '%'] });
+                    // CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, { startSize: [x, x, t] });
+                    CustomCroppr.$.croppr = new Croppr(CustomCroppr.$.img, { startSize: [x, y, t] });
 
                     CustomCroppr.window.open()
                     document.querySelector("#croppr_editor").classList.add("open")
                     // document.querySelector("#croppr")
                 }
-            }
-        },
-        load: function () {
-            if (CustomCroppr.$.img) {
-                CustomCroppr.window.open()
-                document.querySelector("#croppr_editor").classList.add("open")
             }
         },
         crop: function () {
@@ -84,6 +82,7 @@ let CustomCroppr = {
         close: function () {
             CustomCroppr.window.close()
             document.querySelector("#croppr_editor").classList.remove("open")
+
         }
     },
     viewer: {

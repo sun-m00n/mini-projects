@@ -37,17 +37,10 @@
 }
 
 #croppr_window * button {
-    /* padding: 8px 32px; */
     background-color: #fff;
     margin: 9px;
     border: none;
     font-size: medium;
-    /* min-width: 100px; */
-    /* max-width: 150px; */
-    /* border-radius: 6px; */
-    /* box-shadow: 0 0 4px black; */
-    /* font-size: 16px; */
-    /* letter-spacing: 1px; */
 }
 
 #croppr_window * button:hover {
