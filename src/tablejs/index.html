@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="essentials.css">
+
+  <script src="./js/extra/support.js"></script>
+  <script src="./js/extra/data.js"></script>
+
+  <style>
+    #my-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 150px !important;
+      height: 150px !important;
+      background-color: tomato !important;
+    }
+  </style>
+</head>
+
+<body>
+  <p id="my-box"></p>
+  <button id="efs" type="button" onclick="openFullscreen()">Enable FullScreen</button>
+  <button id="dfs" type="button" onclick="closeFullscreen()">Disable FullScreen</button>
+
+  <div id="myTableContainerID"></div>
+  <div id="id"></div>
+
+  <script src="./js/index.js"></script>
+  <script>
+    let n = new ExcelTable(
+      [
+        "lp"
+      ],
+      //  {
+      // search: false,
+      // containerId: 'id'
+      // }
+    )
+    n.add([{
+        "loop": 'siru'
+      }
+      // "ko"
+    ])
+    // let m = new ExcelTable()
+  </script>
+  <script src="./js/expriment.js"></script>
+</body>
+
+</html>

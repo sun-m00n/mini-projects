@@ -2,39 +2,68 @@
 
 <body>
 
-    <label>
-        Urls seperated by comma (,)
-        <textarea cols="30" rows="10"></textarea>
-    </label>
-    <button onclick="download()">Download</button>
+  <label>
+    Urls seperated by comma (,)
+    <textarea cols="30" rows="10"></textarea>
+  </label>
+  <button onclick="download()">Download</button>
+  <div id="links">
+    <!-- <a href="http://"></a> -->
+  </div>
+  <script src="./src.js"></script>
+  <script>
+    function download() {
+      let input = document.querySelector("textarea")
+      if (input && input.value > 0) {
+        arr = input.value.split(",")
+        arr.forEach(url => {
+          // fetch file from url
+          fetch(url)
+            .then(response => response.blob())
+            .then(blob => {
+              saveToFile(blob, url);
+            });
+        });
+      }
+    }
 
-    <script>
-        function download() {
-            let input = document.querySelector("textarea")
-            if (input && input.value > 0) {
-                arr = input.value.split(",")
-                arr.forEach(url => {
-                    // fetch file from url
-                    fetch(url)
-                        .then(response => response.blob())
-                        .then(blob => {
-                            downloadToFile(blob, url);
-                        });
-                });
-            }
-        }
+    async function saveToFile(content, filename) {
+      const a = document.createElement('a');
+      const file = new Blob([content], {
+        type: "txt"
+      });
 
-        function downloadToFile(content, filename) {
-            const a = document.createElement('a');
-            const file = new Blob([content], { type: "txt" });
+      a.href = URL.createObjectURL(file);
+      a.download = filename;
+      a.click();
 
-            a.href = URL.createObjectURL(file);
-            a.download = filename;
-            a.click();
+      URL.revokeObjectURL(a.href);
+    };
 
-            URL.revokeObjectURL(a.href);
-        };
-    </script>
+    function downloadFromArrOfLinks(arr) {
+      arr.forEach((url, index) => {
+        // fetch file from url
+        // fetch(url)
+        //   .then(response => response.blob())
+        //   .then(blob => {
+        let name = url.split("/").pop()
+        name = name.split("#")[0]
+        name = name.replaceAll("+", " ")
+        name = name.replaceAll("%20", " ")
+        name = name.replaceAll("-", " ")
+        //     saveToFile(blob, `${index+1} ${name}.pdf`);
+        //     // console.log(`${index+1} ${name}.pdf`)
+        //   })
+        //   .catch(err => {
+        //     console.log(err)
+        //   })
+
+        document.querySelector("#links").innerHTML += `<a href="${url}">${index + 1} : ${name}</a><br>`
+      });
+    }
+
+    downloadFromArrOfLinks(srcs)
+  </script>
 </body>
 
 </html>
