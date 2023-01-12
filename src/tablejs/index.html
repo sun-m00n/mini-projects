@@ -13,7 +13,7 @@
   <script src="./js/extra/data.js"></script>
 
   <style>
-    #my-box {
+    /* #my-box {
       position: absolute;
       top: 0;
       left: 0;
@@ -21,12 +21,11 @@
       width: 150px !important;
       height: 150px !important;
       background-color: tomato !important;
-    }
+    } */
   </style>
 </head>
 
 <body>
-  <p id="my-box"></p>
   <button id="efs" type="button" onclick="openFullscreen()">Enable FullScreen</button>
   <button id="dfs" type="button" onclick="closeFullscreen()">Disable FullScreen</button>
 
@@ -34,10 +33,13 @@
   <div id="id"></div>
 
   <script src="./js/index.js"></script>
+  <script src="./js/htmlTagGenerator.js"></script>
   <script>
     let n = new ExcelTable(
       [
-        "lp"
+        "a",
+        "b",
+        "c"
       ],
       //  {
       // search: false,
@@ -45,13 +47,17 @@
       // }
     )
     n.add([{
-        "loop": 'siru'
-      }
-      // "ko"
+        'a': 'siru',
+        'c': 'siru'
+      },
+      {
+        'a': 'siru',
+        'c': 'siru'
+      },
     ])
     // let m = new ExcelTable()
   </script>
-  <script src="./js/expriment.js"></script>
+  <!-- <script src="./js/expriment.js"></script> -->
 </body>
 
 </html>
