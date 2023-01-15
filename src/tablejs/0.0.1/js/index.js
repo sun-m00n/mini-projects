@@ -33,8 +33,8 @@ class ExcelTable {
 
         // generate table
         // let table = _TAG_({ "table": { "thead": { 'tr': '' }, "tbody": '' } })
-        // let table = $tv3("table", [["thead", ['tr', [['th', 'siru'], ['th', 's2']]]], ['tbody']])
-        // let table = $tv3(["table", [["thead", ['tr', [['th', 'siru'], ['th', 's2']]]], ['tbody']]])
+        // let table = generateTag("table", [["thead", ['tr', [['th', 'siru'], ['th', 's2']]]], ['tbody']])
+        // let table = generateTag(["table", [["thead", ['tr', [['th', 'siru'], ['th', 's2']]]], ['tbody']]])
         let param = [`table${(this.options.tableId) ? '@' + this.options.tableId : ''}`, [
             ['thead', [
                 ['tr',
@@ -46,7 +46,7 @@ class ExcelTable {
             ['tbody']
         ]]
 
-        let table = $tv3(param)
+        let table = generateTag(param)
         // add headers
         // table.querySelector('thead tr').append(...ths)
         // add table
@@ -59,11 +59,11 @@ class ExcelTable {
             let tds = new Array(this.headers.length)
             for (let key in data) {
                 let column_index = this.headers.indexOf(key)
-                tds[column_index] = $tv3(['td', data[key]])
+                tds[column_index] = generateTag(['td', data[key]])
             }
-            let tr = $tv3(['tr'])
+            let tr = generateTag(['tr'])
             for (let i = 0; i < tds.length; i++) {
-                tds[i] = (typeof tds[i] === 'undefined') ? $tv3(['tr']) : tds[i]
+                tds[i] = (typeof tds[i] === 'undefined') ? generateTag(['tr']) : tds[i]
             }
             tr.append(...tds)
             tbody.append(tr)

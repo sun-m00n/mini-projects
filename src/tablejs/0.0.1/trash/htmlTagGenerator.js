@@ -129,4 +129,16 @@ function $tv3(array) {
  * var firstStr=str.subString(0,index)
  * var remainingStr=str.subString(index+1)
  */
-// _TAG_({ "div@id=box,class=card,data-id=45": { "div@id=box1,class=card,data-id=44": { "p": "siro" } } })
+
+
+// function _TAG_(param) {
+
+// }
+// _TAG_(
+//     [{
+//         parent: "html",
+//         childrens: [
+//             {parent: ""}
+//         ]
+//     }]
+// )
