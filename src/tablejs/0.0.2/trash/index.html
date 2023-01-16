@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="container">
+    <table id="myTable" data-exceltable>
+      <thead>
+        <tr>
+          <td type="string" columnNo=1>
+            <button type="button" onclick="filter(this,1)">
+              <img src="./filter.svg">
+              <form class="filter-box">
+                <div class="head">
+                  <button type="button">refresh</button>
+                </div>
+                <div class="body"></div>
+                <div class="footer">
+                  <button type="reset">reset</button>
+                  <button type="submit">apply</button>
+                </div>
+              </form>
+            </button>
+            <span>String</span>
+            <button type="button" onclick="sort(1)"><img src="./caret-down.svg"></button>
+          </td>
+          <td type="number" columnNo=2>
+            <button type="button" onclick="filter(this,2)"><img src="./filter.svg">
+              <form class="filter-box">
+                <div class="head"><button type="button">refresh</button></div>
+                <div class="body"></div>
+                <div class="footer">
+                  <button type="reset">reset</button>
+                  <button type="submit">apply</button>
+                </div>
+              </form>
+            </button>
+            <span>Number</span>
+            <button type="button" onclick="sort(2)"><img src="./caret-down.svg"></button>
+          </td>
+          <td type="date" columnNo=3>
+            <button type="button" onclick="filter(this,3)"><img src="./filter.svg">
+              <form class="filter-box">
+                <div class="head"><button type="button">refresh</button></div>
+                <div class="body"></div>
+                <div class="footer">
+                  <button type="reset">reset</button>
+                  <button type="submit">apply</button>
+                </div>
+              </form>
+            </button>
+            <span>Date</span>
+            <button type="button" onclick="sort(3)"><img src="./caret-down.svg"></button>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <script src="./data.js"></script>
+  <!-- <script src="./lib.js"></script> -->
+  <script src="./main.js"></script>
+</body>
+
+</html>
