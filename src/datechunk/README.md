@@ -1,3 +1,3 @@
 # datechunk.js
 
-#### The Goal of these **side project** is make easier to divide date in chunks.
+The Goal of these _**side project**_ is make easier to divide date in chunks.
