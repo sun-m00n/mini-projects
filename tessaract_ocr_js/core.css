@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.row,
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  max-width: 150px;
+}
+
+.row {
+  flex-direction: row;
+  gap: 9px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR</title>
+
+  <link rel="stylesheet" href="./core.css">
+</head>
+
+<body>
+  <input type="file" accept="image/*" onchange="recognize()">
+  <span class="row">
+    <label class="col">
+      Your Image
+      <img src="./sample.png" alt="text image" />
+    </label>
+    <label class="col">
+      Processed Image
+      <canvas></canvas>
+    </label>
+  </span>
+  <p id="log"></p>
+
+  <!-- v4 -->
+  <script src='https://unpkg.com/tesseract.js@4.0.2/dist/tesseract.min.js'></script>
+  <script src="./image_processing.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

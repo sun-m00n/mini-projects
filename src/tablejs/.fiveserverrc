@@ -1,6 +1,0 @@
-{
-    "root": "/0.0.2/",
-    "fiveServer.browser": [
-        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe  --profile-directory=Profile 2"
-    ]
-}
